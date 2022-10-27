@@ -131,91 +131,6 @@
   <section id="module-ivy.functional.extensions.manipulation">
 <span id="manipulation"></span><h1>Manipulation<a class="headerlink" href="#module-ivy.functional.extensions.manipulation" title="Permalink to this heading"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="ivy.functional.extensions.manipulation.fill_diagonal">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.extensions.manipulation.</span></span><span class="sig-name descname"><span class="pre">fill_diagonal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/extensions/manipulation.html#fill_diagonal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.extensions.manipulation.fill_diagonal" title="Permalink to this definition"></a></dt>
-<dd><p>Replaces values along the diagonal of input array and returns new
-array. For arrays of greater than 2 dimensions, array must have same size
-in all dimensions.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – Input array to receive values along diagonal.</p></li>
-<li><p><strong>value</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Number</span></code>, <a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – Value(s) to be applied along diagonal. If scalar or array-like but of
-shorter length than required to fill all elements, value is repeated.
-If array-like and has more than 1 dimension, value is flattened
-before use.</p></li>
-<li><p><strong>wrap</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]) – Boolean indicating whether values wrap around tall matrices. (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
-Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>. Wrapping does not occur for matrices of greater
-than 2 dimensions.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><em>ret</em> – Input array with diagonal elements replaced by input values.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<span class="go">                   [0, 0]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">ivy.array([[1, 0],</span>
-<span class="go">           [0, 1]])</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<span class="go">                    [0, 0, 0],</span>
-<span class="go">                    [0, 0, 0]],</span>
-</pre></div>
-</div>
-<blockquote>
-<div><dl class="simple">
-<dt>[[0, 0, 0],</dt><dd><p>[0, 0, 0],
-[0, 0, 0]],</p>
-</dd>
-<dt>[[0, 0, 0],</dt><dd><p>[0, 0, 0],
-[0, 0, 0]]])</p>
-</dd>
-</dl>
-</div></blockquote>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">x = ivy.array([[[1, 0, 0],</span>
-<span class="go">                [0, 0, 0],</span>
-<span class="go">                [0, 0, 0]],</span>
-</pre></div>
-</div>
-<blockquote>
-<div><dl class="simple">
-<dt>[[0, 0, 0],</dt><dd><p>[0, 2, 0],
-[0, 0, 0]],</p>
-</dd>
-<dt>[[0, 0, 0],</dt><dd><p>[0, 0, 0],
-[0, 0, 1]]])</p>
-</dd>
-</dl>
-</div></blockquote>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<span class="go">                   [0, 0, 0],</span>
-<span class="go">                   [0, 0, 0],</span>
-<span class="go">                   [0, 0, 0],</span>
-<span class="go">                   [0, 0, 0],</span>
-<span class="go">                   [0, 0, 0]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">x = ivy.array([[1, 0, 0],</span>
-<span class="go">               [0, 2, 0],</span>
-<span class="go">               [0, 0, 3],</span>
-<span class="go">               [0, 0, 0],</span>
-<span class="go">               [4, 0, 0],</span>
-<span class="go">               [0, 1, 0]])</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.extensions.manipulation.flatten">
 <span class="sig-prename descclassname"><span class="pre">ivy.functional.extensions.manipulation.</span></span><span class="sig-name descname"><span class="pre">flatten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/extensions/manipulation.html#flatten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.extensions.manipulation.flatten" title="Permalink to this definition"></a></dt>
 <dd><dl class="simple">
@@ -392,7 +307,7 @@ This is a scalar if both x1 and x2 are scalars.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.extensions.manipulation.hstack">
 <span class="sig-prename descclassname"><span class="pre">ivy.functional.extensions.manipulation.</span></span><span class="sig-name descname"><span class="pre">hstack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrays</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/extensions/manipulation.html#hstack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.extensions.manipulation.hstack" title="Permalink to this definition"></a></dt>
-<dd><p>Stack arrays in sequence horizontally (column wise).</p>
+<dd><p>Stack arrays in sequence horizotally (column wise).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>arrays</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>]) – Sequence of arrays to be stacked.</p>
